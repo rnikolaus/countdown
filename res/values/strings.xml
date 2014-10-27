@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Countdown Timer</string>
+    <string name="enter_val">Enter value in minutes</string>
+    <string name="action_settings">Settings</string>
+    <string name="starting_val">5</string>
+    <string name="start_timer">Start Timer</string>
+    <string name="stop_timer">Stop Timer</string>
+    
+
+</resources>
