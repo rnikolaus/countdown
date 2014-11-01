@@ -1,28 +1,26 @@
 package rnikolaus.countdown;
 
-import android.content.Context;
 import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
 public class Timer {
-	private static Timer t = new Timer();
-	private CountDownTimer timer;
+	private static Timer timer = new Timer();
+	private CountDownTimer countdownTimer;
 	private TextView tv1;
-	private Context context;
+
+	private Ringtone ringtone;
 
 	private Timer() {
 	}
 
 	public static Timer getInstance() {
-		return t;
+		return timer;
 	}
 
 	public void createAndStart(int seconds) {
 		stop();
-		timer = new CountDownTimer(seconds * 1000, 1000) {
+		countdownTimer = new CountDownTimer(seconds * 1000, 1000) {
 
 			public void onTick(long millisUntilFinished) {
 
@@ -33,24 +31,21 @@ public class Timer {
 
 				tv1.setText("done!");
 				try {
-					Uri notification = RingtoneManager
-							.getDefaultUri(RingtoneManager.TYPE_ALARM);
-					Ringtone r = RingtoneManager.getRingtone(context,
-							notification);
-					r.play();
+
+					ringtone.play();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		};
-		timer.start();
+		countdownTimer.start();
 
 	}
 
 	public void stop() {
-		if (timer != null) {
-			timer.cancel();
-			timer=null;
+		if (countdownTimer != null) {
+			countdownTimer.cancel();
+			countdownTimer = null;
 		}
 	}
 
@@ -58,8 +53,8 @@ public class Timer {
 		this.tv1 = tv;
 	}
 
-	public void setContext(Context context) {
-		this.context = context;
+	public void setRingtone(Ringtone ringtone) {
+		this.ringtone = ringtone;
 	}
 
 }
