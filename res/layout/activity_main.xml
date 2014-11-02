@@ -23,17 +23,28 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:text="@string/starting_val" />
+        android:text="@string/starting_val" >
+
+        <requestFocus />
+    </EditText>
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@id/editText1"
+        android:layout_centerVertical="true"
+        android:entries="@array/time_units" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="32dp"
-        android:text="@string/start_timer" 
-        android:onClick="clickStart"/>
+        android:layout_below="@id/spinner1"
+        android:layout_marginBottom="26dp"
+        android:onClick="clickStart"
+        android:text="@string/start_timer" />
 
     <Button
         android:id="@+id/button2"
@@ -41,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
-        android:layout_toRightOf="@+id/button1"
-        android:text="@string/stop_timer" 
-        android:onClick="clickStop"/>
+        android:layout_toRightOf="@id/button1"
+        android:onClick="clickStop"
+        android:text="@string/stop_timer" />
 
 </RelativeLayout>

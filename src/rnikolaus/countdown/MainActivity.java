@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
@@ -19,19 +21,34 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		final TextView tv1 = (TextView) findViewById(R.id.textView1);
 		Timer.getInstance().setTextView(tv1);
+		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		        R.array.time_units, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		spinner.setAdapter(adapter);
+		spinner.setSelection(0);
 	}
+	
 
 	public void clickStart(View view) {
+		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+		int multiplier=1;
+		if (spinner.getSelectedItemPosition()==0)multiplier=60;
 		Uri notification = RingtoneManager
 				.getDefaultUri(RingtoneManager.TYPE_ALARM);
+		
 		Ringtone ringtone = RingtoneManager.getRingtone(
-				getApplicationContext(), notification);
+				getBaseContext(), notification);
 		Timer.getInstance().setRingtone(ringtone);
 		final EditText edText1 = (EditText) findViewById(R.id.editText1);
 		String string = edText1.getText().toString();
+		
 		try {
 			double i = Double.valueOf(string.replaceAll(", ", ""));
-			Timer.getInstance().createAndStart((int) (i * 60));
+			Timer.getInstance().createAndStart((int) (i * multiplier));
 
 		} catch (NumberFormatException ex) {
 			final TextView tv1 = (TextView) findViewById(R.id.textView1);
