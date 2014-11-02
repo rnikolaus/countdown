@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Countdown Timer</string>
-    <string name="enter_val">Enter value in minutes</string>
+    <string name="enter_val">Enter value</string>
     <string name="action_settings">Settings</string>
     <string name="starting_val">5</string>
     <string name="start_timer">Start Timer</string>
