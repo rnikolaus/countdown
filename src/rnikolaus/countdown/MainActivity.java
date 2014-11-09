@@ -40,8 +40,17 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 
+	/**
+	 * Action for the start button
+	 * @param view
+	 */
 	public void clickStart(View view) {
 		setupAlarm();
+		startTimer();
+	}
+
+
+	private void startTimer() {
 		final EditText edText1 = (EditText) findViewById(R.id.editText1);
 		String string = edText1.getText().toString();
 		
@@ -75,26 +84,13 @@ public class MainActivity extends ActionBarActivity {
 		return multiplier;
 	}
 
+	/**
+	 * this is the action for the stop button
+	 * @param view
+	 */
 	public void clickStop(View view) {
 		Timer.getInstance().stop();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 }

@@ -1,11 +1,15 @@
 package rnikolaus.countdown;
 
-import android.media.AudioAttributes;
 import android.media.Ringtone;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.widget.TextView;
 
+/**
+ * This singleton holds the CountDownTimer reference
+ * @author rapnik
+ *
+ */
 public class Timer {
 	private static Timer timer = new Timer();
 	private CountDownTimer countdownTimer;
@@ -14,13 +18,26 @@ public class Timer {
 	private Ringtone ringtone;
 	private Vibrator vibrator;
 
+	/**
+	 * Singleton, no public constructor
+	 */
 	private Timer() {
 	}
 
+	/**
+	 * Get the Timer singleton
+	 * 
+	 * @return
+	 */
 	public static Timer getInstance() {
 		return timer;
 	}
 
+	/**
+	 * Create a timer and start it
+	 * 
+	 * @param seconds
+	 */
 	public void createAndStart(int seconds) {
 		stop();
 		countdownTimer = new CountDownTimer(seconds * 1000, 1000) {
@@ -34,7 +51,7 @@ public class Timer {
 					if (vibrator != null) {
 						vibrator.vibrate(1000);
 					}
-					if (ringtone != null){
+					if (ringtone != null) {
 						ringtone.play();
 					}
 				} catch (Exception e) {
@@ -46,6 +63,9 @@ public class Timer {
 
 	}
 
+	/**
+	 * Stop the timer and/or ringtone
+	 */
 	public void stop() {
 		if (countdownTimer != null) {
 			countdownTimer.cancel();
@@ -59,16 +79,31 @@ public class Timer {
 		}
 	}
 
+	/**
+	 * Set the Textview to write to
+	 * 
+	 * @param tv
+	 */
 	public void setTextView(TextView tv) {
 		this.tv1 = tv;
 	}
 
+	/**
+	 * Set the ringtone to be played
+	 * 
+	 * @param ringtone
+	 */
 	public void setRingtone(Ringtone ringtone) {
 		this.ringtone = ringtone;
 	}
 
-	public void setVibrator(Vibrator v) {
-		this.vibrator = v;
+	/**
+	 * Set the vibrator to use
+	 * 
+	 * @param vibrator
+	 */
+	public void setVibrator(Vibrator vibrator) {
+		this.vibrator = vibrator;
 	}
 
 }
